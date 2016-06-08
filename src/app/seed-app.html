@@ -1,27 +1,24 @@
-<div class="row">
-  <div class="col-md-12">
-    <h3 class="col-md-12">
-      Angular 2 Seed
-    </h3>
-  </div>
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Bootstrap theme</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li [class.active]="currentPath == ''"><a [routerLink]="['/']">Home</a></li>
+        <li [class.active]="currentPath == '/about'"><a [routerLink]="['/about']">about</a></li>
 
-<nav class="row">
-  <div class="col-md-12">
-  	<a [routerLink]="['/']">
-      Home
-    </a>
-    |
-  	<a [routerLink]="['/about']">
-      About
-    </a>
-    |
-  	<a [routerLink]="['/github', 'angular']">
-      Github Repos
-    </a>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
 </nav>
 
-<main class="row">
+<div class="container theme-showcase" role="main">
 	<router-outlet></router-outlet>
-</main>
+</div>

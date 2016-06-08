@@ -67,14 +67,21 @@ gulp.task('html', function() {
 
 gulp.task('default', ['webpack', 'html', 'browser-sync'], function() {
 
+    gulp.watch(
+                'src/**/*.html',
+
+                function(e){
+                    gulp.start.apply(gulp, ['html', browserSync.reload])
+                });
+
     gulp.watch([
                 'src/**/*.js', 
                 'src/**/*.ts', 
                 'src/**/*.json',
-                'src/**/*.html'],
+                ],
 
                 function(e){
-                    gulp.start.apply(gulp, ['webpack', 'html', browserSync.reload])
+                    gulp.start.apply(gulp, ['webpack', browserSync.reload])
                 });
     
     gulp.watch([
