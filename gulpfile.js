@@ -78,8 +78,8 @@ gulp.task('default', ['webpack', 'html', 'browser-sync'], function() {
                 });
     
     gulp.watch([
-                'src/styles/**/*.less',
-                'src/styles/**/*.css'],
+                'src/app/styles/**/*.less',
+                'src/app/styles/**/*.css'],
 
                 function(e){
                     gulp.start.apply(gulp, ['webpack', browserSync.reload])
