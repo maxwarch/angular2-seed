@@ -1,0 +1,15 @@
+<h3>liste</h3>
+<form [ngFormModel]="listeForm" (submit)="addItem($event)" #form="ngForm">
+	<label for="titre">Titre</label>
+	<input type="text" id="titre" placeholder="Le titre" ngControl="titre" #titre="ngForm">
+	<div *ngIf="!titre.valid && titre.dirty">
+		<div class="alert alert-danger">Titre est requis</div>
+	</div>
+	<button type="submit" class="btn btn-xs btn-success" [disabled]="!listeForm.valid">Valider</button>
+</form>
+<hr>
+<ul>
+	<li *ngFor="let item of liste">
+		{{item.titre}}
+	</li>
+</ul>
