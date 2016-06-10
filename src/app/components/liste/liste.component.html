@@ -1,15 +1,31 @@
 <h3>liste</h3>
-<form [ngFormModel]="listeForm" (submit)="addItem($event)" #form="ngForm">
-	<label for="titre">Titre</label>
-	<input type="text" id="titre" placeholder="Le titre" ngControl="titre" #titre="ngForm">
-	<div *ngIf="!titre.valid && titre.dirty">
-		<div class="alert alert-danger">Titre est requis</div>
+<form [ngFormModel]="listeForm" (submit)="addItem(form.value)" #form="ngForm">
+	<div class="form-group" [class.has-error]="!titre.valid && titre.dirty">
+		<label for="titre" class="control-label">Titre</label>
+		<input class="form-control" type="text" id="titre" placeholder="Le titre" ngControl="titre" #titre="ngForm">
+		<div class="alert alert-danger hidden" [class.hidden]="!titre.valid && !titre.pristine">Titre est requis</div>
 	</div>
-	<button type="submit" class="btn btn-xs btn-success" [disabled]="!listeForm.valid">Valider</button>
+	<div class="form-group" [class.has-error]="!texte.valid && titre.dirty">
+		<label for="texte" class="control-label">Texte</label>
+		<input class="form-control" type="text" id="texte" placeholder="Le texte" ngControl="texte" #texte="ngForm">
+		<!-- <div *ngIf="!titre.valid && titre.dirty"> -->
+		<div class="alert alert-danger hidden">Texte est requis</div>
+		<!-- </div> -->
+	</div>
+	<button type="submit" class="btn btn-xs btn-success">Valider</button>
+	
+	<div *ngIf="!listeForm.valid && listeForm.dirty" class="alert alert-danger">Le formulaire n'est pas valide</div>
 </form>
 <hr>
-<ul>
-	<li *ngFor="let item of liste">
-		{{item.titre}}
-	</li>
-</ul>
+<table class="table table-condensed table-bordered">
+	<tr>
+		<th>Titre</th>
+		<th>Texte</th>
+		<th>Del</th>
+	</tr>
+	<tr *ngFor="let item of liste">
+		<td>{{item.titre}}</td>
+		<td>{{item.texte}}</td>
+		<td><button class="btn btn-xs btn-danger" (click)="removeItem(item)">X</button></td>
+	</tr>
+</table>

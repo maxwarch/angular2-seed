@@ -1,34 +1,35 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ControlGroup, Validators } from '@angular/common';
 
+import { ListeService } from './liste.service';
+import { ListeModel } from './liste.model';
 
 @Component({
 	selector:'liste',
-	templateUrl:'app/components/liste/liste.component.html'
+	templateUrl:'app/components/liste/liste.component.html',
+	providers:[ListeService]
 })
 export class Liste{
-	liste: [{}];
+	listeService:ListeService;
+	liste: ListeModel[];
 	listeForm: ControlGroup;
 
-	constructor(fb:FormBuilder){
-		this.liste = [
-			{ titre: 'Lorem ipsum dolor sit amet.' },
-			{ titre: 'lore.' },
-			{ titre: 'test 3.' },
-			{ titre: 'essai.' },
-		]
+	constructor(fb:FormBuilder, listeService:ListeService){
+		this.listeService = listeService;
+		this.liste = this.listeService.getAll();
 
 		this.listeForm = fb.group({
-			titre:['', Validators.required]
+			titre:['', Validators.required],
+			texte:['', Validators.required]
 		})
 	}
 	
 	addItem(d){
 		if(this.listeForm.valid)
-			this.liste.push(this.listeForm.value)
+			this.listeService.add(d);
 	}
 
 	removeItem(d){
-
+		this.listeService.remove(d); 
 	}
 }
