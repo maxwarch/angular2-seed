@@ -9,7 +9,7 @@
 		<label for="texte" class="control-label">Texte</label>
 		<input class="form-control" type="text" id="texte" placeholder="Le texte" ngControl="texte" #texte="ngForm">
 		<!-- <div *ngIf="!titre.valid && titre.dirty"> -->
-		<div class="alert alert-danger hidden">Texte est requis</div>
+		<div class="alert alert-danger" [class.hidden]="texte.valid && !texte.pristine">Texte est requis</div>
 		<!-- </div> -->
 	</div>
 	<button type="submit" class="btn btn-xs btn-success">Valider</button>
